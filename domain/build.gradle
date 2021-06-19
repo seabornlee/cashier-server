@@ -14,6 +14,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.4.5'
 }
 
-group = 'com.uperform.consulting'
+group = 'cn.codingstyle.oocl'
 version = '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'

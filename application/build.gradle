@@ -22,7 +22,7 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-spring:6.10.3'
 }
 
-group = 'com.uperform.consulting'
+group = 'cn.codingstyle.oocl'
 version = '0.0.1-SNAPSHOT'
 description = 'application'
 sourceCompatibility = '1.8'

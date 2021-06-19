@@ -1,0 +1,10 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+ext {
+    minimumCoverageRatio = 0.45
+}
+

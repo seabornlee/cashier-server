@@ -1,13 +1,28 @@
+plugins {
+    id "org.sonarqube" version "3.0"
+}
 allprojects {
-    group = 'com.uperform'
+    group = 'cn.codingstyle'
     version = '1.0-SNAPSHOT'
 }
 
+apply from: "gradle/sonar.gradle"
+apply from: "gradle/test.gradle"
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
     apply plugin: 'idea'
+    apply plugin: 'jacoco'
 
+    sonarqube {
+        properties {
+            property "sonar.sources", "src/main"
+            property "sonar.tests", "src/test"
+            // I was testing with JaCoCo, so the next line is not needed if you're using some other tool
+//            property "sonar.coverage.jacoco.xmlReportPaths", "../build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+//            property "sonar.host.url", "http://<hostname>:<port>"
+        }
+    }
     repositories {
         mavenLocal()
         maven {
@@ -25,19 +40,63 @@ subprojects {
         testCompileOnly 'org.projectlombok:lombok:1.18.16'
         testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
     }
-}
-//gradle.taskGraph.beforeTask { Task task ->
-//    logger.context.level = LogLevel.LIFECYCLE
-//    logging.captureStandardOutput LogLevel.LIFECYCLE
-//    println "^^^ ${task.name}: capture stdout to log level=${logger.context.level}"
-//}
-task logTest {
-    doLast {
-        logger.debug("This is Debug Log Message")
-        logger.info("This is Info Log Message")
-        logger.warn("This is Warn Log Message")
-        logger.lifecycle("This is Lifecycle Log Message")
-        logger.quiet("This is Quiet Log Message")
-        logger.error("This is Erroe Log Message")
+
+    test {
+        useJUnitPlatform()
+
+        testLogging {
+            events 'FAILED', 'SKIPPED'
+        }
+        ignoreFailures false
+        reports.html.enabled = true
     }
+
+    task testReport(type: TestReport) {
+        destinationDir = file("$buildDir/reports/tests")
+        reportOn test
+    }
+
+    jacocoTestReport {
+        executionData tasks.withType(Test)
+
+        reports {
+            xml.enabled = false
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        executionData tasks.withType(Test)
+//        violationRules {
+//            rule {
+//                limit {
+//                    minimum = minimumCoverageRatio
+//                }
+//
+//                limit {
+//                    counter = 'LINE'
+//                    value = 'COVEREDRATIO'
+//                    minimum = 0.35
+//                }
+//                limit {
+//                    counter = 'BRANCH'
+//                    value = 'COVEREDRATIO'
+//                    minimum = 0.35
+//                }
+//                limit {
+//                    counter = 'METHOD'
+//                    value = 'COVEREDRATIO'
+//                    minimum = 0.35
+//                }
+//                limit {
+//                    counter = 'CLASS'
+//                    value = 'COVEREDRATIO'
+//                    minimum = 0.35
+//                }
+//            }
+//        }
+    }
+
+    check.dependsOn jacocoTestCoverageVerification
+    jacocoTestCoverageVerification.dependsOn jacocoTestReport
 }
+
