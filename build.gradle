@@ -1,0 +1,43 @@
+allprojects {
+    group = 'com.uperform'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenLocal()
+        maven {
+            url = uri('http://maven.aliyun.com/nexus/content/groups/public')
+        }
+        maven {
+            url = uri('https://jitpack.io')
+        }
+    }
+
+    sourceCompatibility = '1.8'
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.16'
+        annotationProcessor 'org.projectlombok:lombok:1.18.16'
+        testCompileOnly 'org.projectlombok:lombok:1.18.16'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+    }
+}
+//gradle.taskGraph.beforeTask { Task task ->
+//    logger.context.level = LogLevel.LIFECYCLE
+//    logging.captureStandardOutput LogLevel.LIFECYCLE
+//    println "^^^ ${task.name}: capture stdout to log level=${logger.context.level}"
+//}
+task logTest {
+    doLast {
+        logger.debug("This is Debug Log Message")
+        logger.info("This is Info Log Message")
+        logger.warn("This is Warn Log Message")
+        logger.lifecycle("This is Lifecycle Log Message")
+        logger.quiet("This is Quiet Log Message")
+        logger.error("This is Erroe Log Message")
+    }
+}

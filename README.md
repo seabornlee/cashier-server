@@ -1,0 +1,42 @@
+# oocl
+
+# 模块
+
+- application 应用，包括Spring服务、JPA实现等
+- domain 业务领域，纯业务逻辑部分
+
+# 测试介绍
+
+- application 使用 cucumber测试
+- domain 使用junit5
+
+* 运行所有模块测试
+
+```shell
+./gradlew test -i
+```
+
+* 运行指定模块测试
+
+```shell
+./gradlew test -Pmodule=application -i
+```
+
+# 编译项目
+
+```shell
+./gradlew clean build -i
+```
+
+* 编译指定模块
+
+```shell
+./gradlew clean build -Pmodule=application -i
+```
+
+* 本地启动mysql和数据库查看工具
+
+```shell
+cd env/local
+docker-compose up
+```
