@@ -13,25 +13,25 @@
 * 运行所有模块测试
 
 ```shell
-./gradlew test -i
+./gradlew test
 ```
 
 * 运行指定模块测试
 
 ```shell
-./gradlew test -Pmodule=application -i
+./gradlew test -Pmodule=application
 ```
 
 # 编译项目
 
 ```shell
-./gradlew clean build -i
+./gradlew clean build
 ```
 
 * 编译指定模块
 
 ```shell
-./gradlew clean build -Pmodule=application -i
+./gradlew clean build -Pmodule=application
 ```
 
 * 本地启动mysql和数据库查看工具
@@ -40,3 +40,6 @@
 cd env/local
 docker-compose up
 ```
+
+# 本地运行
+

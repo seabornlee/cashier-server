@@ -3,7 +3,7 @@ version: '3.4'
 services:
   mysql:
     image: mysql:5.7.28
-    container_name: mysql.test.oocl
+    container_name: mysql.test.api
     restart: always
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -18,7 +18,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin.test.oocl
+    container_name: phpmyadmin.test.api
     links:
       - mysql:db
     ports:

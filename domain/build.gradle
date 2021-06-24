@@ -14,6 +14,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.4.5'
 }
 
-group = 'cn.codingstyle.oocl'
+group = 'cn.codingstyle.domain'
 version = '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
