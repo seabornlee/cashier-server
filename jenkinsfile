@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'gradle:6.0.1-jdk8'
+                    image 'gradle:6.9.0-jdk8'
                     args '-v $HOME/.gradle:/home/gradle/.gradle'
                 }
             }
