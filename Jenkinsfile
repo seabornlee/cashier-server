@@ -13,7 +13,7 @@ pipeline {
             agent {
                 docker {
                     image 'gradle:6.9.0-jdk8'
-                    args '-v $HOME/.gradle:/home/gradle/.gradle'
+                    args '-v $HOME/.gradle:/home/gradle/.gradle -v /var/run/docker.sock:/var/run/docker.sock --group-add 992'
                 }
             }
             steps {
