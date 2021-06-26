@@ -22,7 +22,6 @@ pipeline {
                         sh """
                             java -version
                             mvn clean package 
-                            mvn sonar:sonar
                         """
                     } catch (err) {
                         throw err

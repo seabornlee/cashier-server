@@ -104,6 +104,21 @@ docker-compose up
 mvn spring-boot:run -pl application
  ```
 
-## sonar
+## sonar 运行
 
-http://115.28.94.6:19000
+* gradle 运行
+
+```shell
+./gradlew sonar
+```
+
+* maven 运行
+
+```shell
+mvn sonar:sonar
+```
+
+* 查看sonar地址
+ 
+  http://115.28.94.6:19000
+

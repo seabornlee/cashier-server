@@ -22,7 +22,6 @@ pipeline {
                         sh """
                             java -version
                             gradle clean build 
-                            gradle sonarqube
                         """
                     } catch (err) {
                         throw err
