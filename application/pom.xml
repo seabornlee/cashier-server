@@ -10,7 +10,7 @@
     </parent>
     <groupId>cn.codingstyle.server</groupId>
     <artifactId>application</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <name>application</name>
     <properties>
         <java.version>8</java.version>

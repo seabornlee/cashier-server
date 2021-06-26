@@ -13,7 +13,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.8.1-jdk-8'
-                    args '-v $HOME/.m2:/root/.m2'
+                    args '-v $HOME/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock --group-add 992'
                 }
             }
             steps {
