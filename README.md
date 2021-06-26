@@ -104,3 +104,6 @@ docker-compose up
 mvn spring-boot:run -pl application
  ```
 
+## sonar
+
+http://115.28.94.6:19000
