@@ -56,7 +56,7 @@ docker-compose up
 * 运行项目
 
 ```shell
-./gradlew 
+./gradlew  bootRun
  ```
 
 ### 方式二：maven

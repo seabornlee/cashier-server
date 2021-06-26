@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'org.springframework.boot'
 dependencies {
     compile project(':domain')
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.4.5'
