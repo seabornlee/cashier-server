@@ -10,6 +10,7 @@
 - application 使用 cucumber测试
 - domain 使用junit5
 
+## gradle方式
 * 运行所有模块测试
 
 ```shell
@@ -22,7 +23,7 @@
 ./gradlew test -Pmodule=application
 ```
 
-# 编译项目
+### 编译项目
 
 ```shell
 ./gradlew clean build
@@ -41,5 +42,6 @@ cd env/local
 docker-compose up
 ```
 
-# 本地运行
+### 本地运行
 
+## maven 方式
