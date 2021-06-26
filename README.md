@@ -11,6 +11,7 @@
 - domain 使用junit5
 
 ## gradle方式
+
 * 运行所有模块测试
 
 ```shell
@@ -45,3 +46,15 @@ docker-compose up
 ### 本地运行
 
 ## maven 方式
+
+根目录下打包
+
+```shell
+mvn clean package
+```
+
+运行application项目
+
+```shell
+ mvn spring-boot:run 
+ ```
