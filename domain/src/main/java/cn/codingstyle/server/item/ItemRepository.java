@@ -1,5 +1,6 @@
 package cn.codingstyle.server.item;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ItemRepository {
@@ -10,4 +11,6 @@ public interface ItemRepository {
     Optional<Item> findById(Integer id);
 
     void deleteById(Integer id);
+
+    List<Item> findAll();
 }

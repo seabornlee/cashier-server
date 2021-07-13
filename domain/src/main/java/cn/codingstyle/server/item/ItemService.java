@@ -1,5 +1,7 @@
 package cn.codingstyle.server.item;
 
+import java.util.List;
+
 public class ItemService {
     private final ItemRepository itemRepository;
 
@@ -26,5 +28,9 @@ public class ItemService {
 
     public void deleteItem(Integer id) {
         itemRepository.deleteById(id);
+    }
+
+    public List<Item> getItems() {
+        return itemRepository.findAll();
     }
 }

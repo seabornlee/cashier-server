@@ -2,9 +2,12 @@ package cn.codingstyle.server.application.item.repository;
 
 import cn.codingstyle.server.item.Item;
 import cn.codingstyle.server.item.ItemRepository;
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class ItemRepositoryImpl implements ItemRepository {
@@ -32,5 +35,13 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Override
     public void deleteById(Integer id) {
         itemDAO.deleteById(id);
+    }
+
+    @Override
+    public List<Item> findAll() {
+        Iterable<ItemDO> all = itemDAO.findAll();
+        return Lists.newArrayList(all).stream()
+                .map(ItemDO::toEntity)
+                .collect(Collectors.toList());
     }
 }

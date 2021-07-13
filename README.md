@@ -1,6 +1,10 @@
-# springboot-api
+# Cashier-Server
 
-* 支持maven、gradle 编译 、打包
+## 本地环境安装
+
+- Java JDK 1.8
+- IntelliJ IDEA
+- Docker
 
 ## 模块
 
@@ -9,57 +13,10 @@
 
 ## 测试
 
-- application 使用 cucumber测试
-- domain 使用junit5
+- application 使用 MockMvc 测试
+- domain 使用 JUnit5
 
 ## 命令行操作
-
-### 方式一：gradle
-
-#### 1、运行测试
-
-* 运行所有模块测试
-
-```shell
-./gradlew test
-```
-
-* 运行指定模块测试
-
-```shell
-./gradlew test -Pmodule=application
-```
-
-#### 2、编译项目
-
-* 编译项目
-
-```shell
-./gradlew clean build
-```
-
-* 编译指定模块
-
-```shell
-./gradlew clean build -Pmodule=application
-```
-
-#### 3、本地运行项目
-
-* 本地启动mysql和数据库查看工具
-
-```shell
-cd env/local
-docker-compose up
-```
-
-* 运行项目
-
-```shell
-./gradlew  bootRun
- ```
-
-### 方式二：maven
 
 #### 1、运行测试
 
@@ -91,7 +48,7 @@ mvn clean package -pl application
 
 #### 3、本地运行项目
 
-* 本地启动mysql和数据库查看工具
+* 本地启动MySQL和数据库查看工具
 
 ```shell
 cd env/local
@@ -104,21 +61,13 @@ docker-compose up
 mvn spring-boot:run -pl application
  ```
 
-## sonar 运行
-
-* gradle 运行
+## Sonar 运行
 
 ```shell
-./gradlew sonar
+mvn sonar:sonar 
 ```
 
-* maven 运行
+* 查看Sonar地址
 
-```shell
-mvn sonar:sonar
-```
-
-* 查看sonar地址
- 
   http://115.28.94.6:19000
 

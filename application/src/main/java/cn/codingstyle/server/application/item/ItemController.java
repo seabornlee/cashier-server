@@ -4,6 +4,8 @@ import cn.codingstyle.server.item.Item;
 import cn.codingstyle.server.item.ItemService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/items")
 public class ItemController {
@@ -22,6 +24,11 @@ public class ItemController {
     @GetMapping("/{barcode}")
     public Item getItem(@PathVariable String barcode) {
         return itemService.getItem(barcode);
+    }
+
+    @GetMapping
+    public List<Item> getItems() {
+        return itemService.getItems();
     }
 
     @PutMapping("/{id}")
