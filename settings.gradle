@@ -1,4 +1,4 @@
-rootProject.name = 'oocl'
+rootProject.name = 'cashier-server'
 
 include ':application'
 include ':domain'
