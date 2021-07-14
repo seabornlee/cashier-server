@@ -37,6 +37,7 @@ public class ItemControllerTest {
 
     @BeforeEach
     public void setUp() {
+        itemFactory.clear();
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
