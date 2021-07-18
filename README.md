@@ -51,15 +51,21 @@ mvn clean package -pl application
 * 本地启动MySQL和数据库查看工具
 
 ```shell
-cd env/local
-docker-compose up
+docker-compose -f env/local/docker-compose.yml up
 ```
 
 * 运行项目
 
 ```shell
+mvn clean install
 mvn spring-boot:run -pl application
  ```
+
+* 访问地址
+
+```shell
+http://localhost:8080/
+```
 
 ## Sonar 运行
 
