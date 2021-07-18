@@ -61,10 +61,10 @@ mvn clean install
 mvn spring-boot:run -pl application
  ```
 
-* 访问地址
+* 访问swagger-ui
 
 ```shell
-http://localhost:8080/
+http://localhost:8080/doc.html
 ```
 
 ## Sonar 运行
