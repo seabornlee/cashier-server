@@ -1,6 +1,5 @@
-package cn.codingstyle.server.application.product;
+package cn.codingstyle.product;
 
-import cn.codingstyle.product.ProductRequest;
 import lombok.Getter;
 
 import java.math.BigDecimal;

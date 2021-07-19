@@ -1,7 +1,5 @@
-package cn.codingstyle.server.application.product;
+package cn.codingstyle.product;
 
-import cn.codingstyle.product.Product;
-import cn.codingstyle.product.ProductRepository;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,4 +15,11 @@ public class ProductRepositoryImpl implements ProductRepository {
         ProductDO productDO = ProductDO.from(product);
         productDAO.save(productDO);
     }
+
+    @Override
+    public Product findByBarcode(String barcode) {
+        ProductDO productDO = productDAO.findByBarcode(barcode);
+        return productDO.toEntity();
+    }
+
 }

@@ -1,6 +1,5 @@
-package cn.codingstyle.server.application.product;
+package cn.codingstyle.product;
 
-import cn.codingstyle.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +32,17 @@ public class ProductDO {
                 .price(product.getPrice())
                 .type(product.getType())
                 .unit(product.getUnit())
+                .build();
+    }
+
+    public Product toEntity() {
+        return Product.builder()
+                .id(id)
+                .name(name)
+                .barcode(barcode)
+                .price(price)
+                .type(type)
+                .unit(unit)
                 .build();
     }
 }

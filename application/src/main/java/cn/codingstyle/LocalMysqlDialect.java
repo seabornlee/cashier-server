@@ -1,4 +1,4 @@
-package cn.codingstyle.server.application;
+package cn.codingstyle;
 
 import org.hibernate.dialect.MySQL57Dialect;
 

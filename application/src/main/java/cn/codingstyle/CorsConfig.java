@@ -1,4 +1,4 @@
-package cn.codingstyle.server.application;
+package cn.codingstyle;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

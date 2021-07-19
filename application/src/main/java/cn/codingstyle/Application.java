@@ -1,4 +1,4 @@
-package cn.codingstyle.server.application;
+package cn.codingstyle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

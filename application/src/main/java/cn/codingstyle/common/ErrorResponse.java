@@ -1,4 +1,4 @@
-package cn.codingstyle.server.application.common;
+package cn.codingstyle.common;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
