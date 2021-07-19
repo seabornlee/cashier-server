@@ -1,7 +1,0 @@
-rootProject.name = 'cashier-server'
-
-include ':application'
-include ':domain'
-
-project(':application').projectDir = "$rootDir/application" as File
-project(':domain').projectDir = "$rootDir/domain" as File
