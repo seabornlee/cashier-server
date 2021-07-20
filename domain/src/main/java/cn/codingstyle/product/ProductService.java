@@ -14,11 +14,10 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public ProductReceipt scan(String barcode) {
+    public ProductReceipt scan(String barcode, Integer quantity) {
         Product product = productRepository.findByBarcode(barcode);
-        ProductItem productItem = new ProductItem(product, 1);
+        ProductItem productItem = new ProductItem(product, quantity);
         scanProductItemRepository.add(productItem);
         return new ProductReceipt(scanProductItemRepository.findAll());
-//        return new Gson().fromJson("{\"totalAmount\":51.90,\"products\":[{\"name\":\"pizza\",\"quantity\":1,\"unit\":\"\",\"price\":15.00},{\"name\":\"milk\",\"quantity\":3,\"unit\":\"L\",\"price\":12.30}]}", ProductReceipt.class);
     }
 }

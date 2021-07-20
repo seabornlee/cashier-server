@@ -18,10 +18,9 @@ public class ProductController {
         productService.create(productRequest);
     }
 
-    @PostMapping("products/{barcode}/scan")
-    public ProductReceipt scan(@PathVariable String barcode) {
-        return productService.scan(barcode);
+    @PostMapping("/products/{barcode}/scan/{quantity}")
+    public ProductReceipt scan(@PathVariable String barcode, @PathVariable Integer quantity) {
+        return productService.scan(barcode, quantity);
     }
-
 
 }

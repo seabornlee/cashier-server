@@ -1,7 +1,9 @@
 package cn.codingstyle.server.application.controller;
 
 import cn.codingstyle.Application;
-import cn.codingstyle.product.*;
+import cn.codingstyle.product.ProductDO;
+import cn.codingstyle.product.ProductFactory;
+import cn.codingstyle.product.ScanProductItemRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -38,31 +40,37 @@ public class ProductControllerTest {
     }
 
     @Test
-    void should_get_product_list_when_scan_code() throws Exception {
-        givenProductItem();
-        givenProduct();
-        String result = mockMvc.perform(post("/products/12345678/scan"))
+    void should_return_receipt_when_scan_barcode() throws Exception {
+        ProductDO pizza = givenProduct("12345678", "pizza", "piece", "15.00");
+        ProductDO milk = givenProduct("22345678", "milk", "L", "12.30");
+        String result = scan(pizza.getBarcode());
+        JSONAssert.assertEquals("{\"totalAmount\":15,\"products\":[{\"name\":\"pizza\",\"quantity\":1,\"unit\":\"piece\",\"price\":15}]}", result, false);
+
+        String secondResult = scan(pizza.getBarcode());
+        JSONAssert.assertEquals("{\"totalAmount\":30,\"products\":[{\"name\":\"pizza\",\"quantity\":2,\"unit\":\"piece\",\"price\":15}]}", secondResult, false);
+
+        String milkScanResult = scan(milk.getBarcode(), 2);
+        JSONAssert.assertEquals("{\"totalAmount\":54.6,\"products\":[{\"name\":\"pizza\",\"quantity\":2,\"unit\":\"piece\",\"price\":15},{\"name\":\"milk\",\"quantity\":2,\"unit\":\"L\",\"price\":12.3}]}", milkScanResult, false);
+    }
+
+    private String scan(String barcode) throws Exception {
+        return scan(barcode, 1);
+    }
+
+    private String scan(String barcode, int quantity) throws Exception {
+        return mockMvc.perform(post("/products/{barcode}/scan/{quantity}", barcode, quantity))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-
-        String expected = "{\"totalAmount\":51.90,\"products\":[{\"name\":\"pizza\",\"quantity\":1,\"unit\":\"\",\"price\":15.00},{\"name\":\"milk\",\"quantity\":3,\"unit\":\"L\",\"price\":12.30}]}";
-        JSONAssert.assertEquals(expected, result, false);
-
     }
 
-    private void givenProductItem() {
-        ProductItem productItem = new ProductItem("milk", "L", 3, new BigDecimal("12.30"));
-        scanProductItemRepository.add(productItem);
-    }
-
-    private ProductDO givenProduct() {
+    private ProductDO givenProduct(String barcode, String name, String unit, String price) {
         ProductDO itemDO = ProductDO.builder()
-                .barcode("12345678")
-                .name("pizza")
-                .unit("")
-                .price(new BigDecimal("15.00"))
+                .barcode(barcode)
+                .name(name)
+                .unit(unit)
+                .price(new BigDecimal(price))
                 .type("1")
                 .build();
         productFactory.save(itemDO);

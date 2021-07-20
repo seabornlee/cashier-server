@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class ProductItem {
+    private String barcode;
     private String name;
     private String unit;
     private Integer quantity;
@@ -17,6 +18,7 @@ public class ProductItem {
         this.unit = product.getUnit();
         this.quantity = quantity;
         this.price = product.getPrice();
+        this.barcode = product.getBarcode();
     }
 
     public ProductItem(String name, String unit, Integer quantity, BigDecimal price) {
@@ -28,5 +30,9 @@ public class ProductItem {
 
     public BigDecimal totalAmount() {
         return this.price.multiply(BigDecimal.valueOf(this.quantity));
+    }
+
+    public void increase(Integer quantity) {
+        this.quantity += quantity;
     }
 }
